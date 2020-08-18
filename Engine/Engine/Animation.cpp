@@ -49,6 +49,7 @@ void Animation::AddFrame(const char* path) {
 	if (maxFrame == 0) {
 		width = spriteVector[maxFrame]->getWidth();
 		height = spriteVector[maxFrame]->getHeight();
+		rect = spriteVector[maxFrame]->getRect();
 	}
 
 	maxFrame++;

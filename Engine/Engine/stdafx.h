@@ -1,11 +1,11 @@
 #pragma once
 
 //프로그램 세팅
-#define CONSOLE_ON true
+#define CONSOLE_ON false
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 768
 #define BG_COLOR D3DCOLOR_ARGB(255,255,255,255)
-#define PROGRAM_NAME TEXT("Engine")
+#define PROGRAM_NAME TEXT("공피하기게임")
 #define CONSOLE_NAME TEXT("Console")
 
 //윈도우 헤더

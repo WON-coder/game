@@ -1,114 +1,60 @@
 #include "stdafx.h"
 #include "GameScene.h"
+#include "ScoreScene.h"
 
-GameScene::GameScene() {
-	gravity = 0;
-	isJump = false;
-	doubleJump = false;
+GameScene::GameScene(int num) {
+	start = time(NULL);
+	ballNum = num;
+	score = 0;
 
+	player = new Player();
+	AddObject(player);
+	player->setPos(400, 250);
 
-	backgroundList.push_back(new Sprite("Resources/Image/Background.png"));
+	for (int i = 0; i < 4; i++) {
+		scoreArray[i] = new Score();
+		scoreArray[i]->setPos(380 + 60 * i, 10);
+		AddObject(scoreArray[i]);
+	}
 
-	Sprite* tmpBackground = new Sprite("Resources/Image/Background.png");
-	tmpBackground->setPos(SCREEN_WIDTH, 0);
-	backgroundList.push_back(tmpBackground);
-
-	Sprite* tmpBridge = new Sprite("Resources/Image/LoopMap.png");
-	tmpBridge->setPos(0, 500);
-	bridgeList.push_back(tmpBridge);
-
-	Sprite* tempBridge = new Sprite("Resources/Image/LoopMap.png");
-	tempBridge->setPos(SCREEN_WIDTH, 500);
-	bridgeList.push_back(tempBridge);
-
-	player = new Animation(10);
-	player->AddFrame("Resources/Image/player-run.png");
-	player->AddFrame("Resources/Image/player-stop.png");
-	player->setPos(50, 100);
+	for (int i = 0; i < ballNum; i++) {
+		ballArray[i] = new Ball;
+		AddObject(ballArray[i]);
+		ballArray[i]->setPos(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
+	}
 }
 
 GameScene::~GameScene() {
-
+	
 }
 
 void GameScene::Render() {
-	for (auto& background : backgroundList) {
-		background->Render();
-	}
-
-	for (auto& bridge : bridgeList) {
-		bridge->Render();
-	}
-
 	player->Render();
-
+	for (int i = 0; i < ballNum; i++) {
+		ballArray[i]->Render();
+	}
+	for (int i = 0; i < 4; i++) {
+		scoreArray[i]->Render();
+	}
 }
 
 void GameScene::Update(float dTime) {
 	Scene::Update(dTime);
-	gravity += 9.8f;
+	now = time(NULL);
+	score = now - start;
 
-	player->setPos(player->getPosX(), player->getPosY() + gravity * dTime);
+	scoreArray[0]->setScore(score / 1000);
+	scoreArray[1]->setScore(score / 100 % 10);
+	scoreArray[2]->setScore(score / 10 % 10);
+	scoreArray[3]->setScore(score % 10);
 
-	if (isJump) {
-		player->setPos(player->getPosX(), player->getPosY() - 500 * dTime);
-		if (doubleJump) {
-			player->setPos(player->getPosX(), player->getPosY() - 300 * dTime);
-		}
-		if (inputManager->GetKeyState(VK_SPACE) == KEY_DOWN) {
-			doubleJump = true;
-		}
-	}
 
-	if (player->getPosY() > 350){
-		player->setPos(player->getPosX(), 350);
-		doubleJump = false;
-		isJump = false;
-	}
 
-	if (inputManager->GetKeyState(VK_SPACE) == KEY_DOWN) {
-		if (player->getPosY() == 350) {
-			isJump = true;
-			gravity = 0;
+	for (int i = 0; i < ballNum; i++) {
+		if (player->IsCollisionRect(ballArray[i])) {
+			sceneManager->ChangeScene(new ScoreScene(score));
+			return;
 		}
 	}
 
-	player->Update(dTime);
-
-	int backgroundDiff = 500 * dTime;
-	for (auto iter = backgroundList.begin();
-		iter != backgroundList.end(); iter++) {
-		(*iter)->setPos((*iter)->getPosX() - backgroundDiff, (*iter)->getPosY());
-
-		if ((*iter)->getPosX() < -SCREEN_WIDTH) {
-			SAFE_DELETE((*iter));
-			iter = backgroundList.erase(iter);
-
-			Sprite* tmpBackground = new Sprite("Resources/Image/Background.png");
-			tmpBackground->setPos(SCREEN_WIDTH, -10);
-			backgroundList.push_back(tmpBackground);
-
-			if (iter == backgroundList.end()) {
-				break;
-			}
-		}
-	}
-
-	for (auto iter = bridgeList.begin();
-		iter != bridgeList.end(); iter++) {
-		(*iter)->setPos((*iter)->getPosX() - backgroundDiff, (*iter)->getPosY());
-
-		if ((*iter)->getPosX() < -SCREEN_WIDTH) {
-			SAFE_DELETE((*iter));
-			iter = bridgeList.erase(iter);
-
-			Sprite* tempBridge = new Sprite("Resources/Image/LoopMap.png");
-			tempBridge->setPos(SCREEN_WIDTH, 500);
-			bridgeList.push_back(tempBridge);
-
-			if (iter == bridgeList.end()) {
-				break;
-			}
-		}
-	}
 }

@@ -2,19 +2,17 @@
 #include "MainScene.h"
 
 MainScene::MainScene() {
-	background = new Sprite("Resources/Image/Background.png");
+	background = new Sprite("Resources/Image/background.png");
 	AddObject(background);
 	background->setPos(0, 0);
 
-	title = new Sprite("Resources/Image/title.png");
-	AddObject(title);
-	title->setPos(200, 150);
-
 	startButton = new Sprite("Resources/Image/start.png");
 	AddObject(startButton);
-	startButton->setPos(200, 350);
+	startButton->setPos(300, 350);
 
-
+	exitButton = new Sprite("Resources/Image/end.png");
+	AddObject(exitButton);
+	exitButton->setPos(300, 500);
 }
 
 MainScene::~MainScene() {
@@ -23,13 +21,24 @@ MainScene::~MainScene() {
 
 void MainScene::Render() {
 	background->Render();
-	title->Render();
 	startButton->Render();
+	exitButton->Render();
 }
 
 void MainScene::Update(float dTime) {
 	Scene::Update(dTime);
-	if (inputManager->GetKeyState(VK_SPACE) == KEY_DOWN) {
-		sceneManager->ChangeScene(new CharacterScene());
+
+	if (inputManager->GetKeyState(VK_LBUTTON) == KEY_DOWN) {
+
+		if (startButton->IsPointInRect(inputManager->GetMousePos())) {
+			sceneManager->ChangeScene(new LevelScene());
+			return;
+		}
+
+		if (exitButton->IsPointInRect(inputManager->GetMousePos())) {
+			PostQuitMessage(0);
+			return;
+		}
+
 	}
 }

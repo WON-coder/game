@@ -1,22 +1,24 @@
 #pragma once
 #include "Scene.h"
 #include "Sprite.h"
-#include "Animation.h"
 #include <list>
-
-#include "Background.h"
+#include <time.h>
+#include "Ball.h"
+#include "Player.h"
+#include "Score.h"
 class GameScene :
 	public Scene
 {
 private:
-	float gravity;
-	bool doubleJump, isJump;
+	int start, now;
+	int ballNum;
+	int score;
+	Player* player;
+	Score* scoreArray[4];
+	Ball* ballArray[31];
 
-	std::list<Sprite *>backgroundList;
-	std::list<Sprite*>bridgeList;
-	Animation* player;
 public:
-	GameScene();
+	GameScene(int ballNum);
 	~GameScene();
 
 	void Render();

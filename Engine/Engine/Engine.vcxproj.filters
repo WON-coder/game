@@ -102,9 +102,6 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>소스 파일\Game\GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="Background.cpp">
-      <Filter>소스 파일\Game\GameScene\SceneObject</Filter>
-    </ClCompile>
     <ClCompile Include="LevelScene.cpp">
       <Filter>소스 파일\Game\MainScene</Filter>
     </ClCompile>
@@ -163,9 +160,6 @@
     </ClInclude>
     <ClInclude Include="GameScene.h">
       <Filter>헤더 파일\Game\GameScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>헤더 파일\Game\GameScene\SceneObject</Filter>
     </ClInclude>
     <ClInclude Include="ScoreScene.h">
       <Filter>헤더 파일\Game\GameScene</Filter>
