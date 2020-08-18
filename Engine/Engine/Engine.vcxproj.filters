@@ -63,9 +63,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -105,11 +102,26 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>소스 파일\Game\GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="CharacterScene.cpp">
-      <Filter>소스 파일\Game\MainScene</Filter>
-    </ClCompile>
     <ClCompile Include="Background.cpp">
       <Filter>소스 파일\Game\GameScene\SceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelScene.cpp">
+      <Filter>소스 파일\Game\MainScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Ball.cpp">
+      <Filter>소스 파일\Game\GameScene\SceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\Game\GameScene\SceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Score.cpp">
+      <Filter>소스 파일\Game\GameScene\SceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreScene.cpp">
+      <Filter>소스 파일\Game\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,10 +164,22 @@
     <ClInclude Include="GameScene.h">
       <Filter>헤더 파일\Game\GameScene</Filter>
     </ClInclude>
-    <ClInclude Include="CharacterScene.h">
+    <ClInclude Include="Background.h">
+      <Filter>헤더 파일\Game\GameScene\SceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreScene.h">
+      <Filter>헤더 파일\Game\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelScene.h">
       <Filter>헤더 파일\Game\MainScene</Filter>
     </ClInclude>
-    <ClInclude Include="Background.h">
+    <ClInclude Include="Ball.h">
+      <Filter>헤더 파일\Game\GameScene\SceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>헤더 파일\Game\GameScene\SceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Score.h">
       <Filter>헤더 파일\Game\GameScene\SceneObject</Filter>
     </ClInclude>
   </ItemGroup>
