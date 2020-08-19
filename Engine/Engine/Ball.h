@@ -16,6 +16,5 @@ public:
 	void Update(float dTime);
 	void Render();
 
-	void setDiffXY();
 };
 

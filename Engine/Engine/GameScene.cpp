@@ -16,12 +16,26 @@ GameScene::GameScene(int num) {
 		scoreArray[i]->setPos(380 + 60 * i, 10);
 		AddObject(scoreArray[i]);
 	}
-
+	int w, h;
 	for (int i = 0; i < ballNum; i++) {
 		ballArray[i] = new Ball;
 		AddObject(ballArray[i]);
-		ballArray[i]->setPos(rand() % 1000, rand() % 700);
-		ballArray[i]->setDiffXY();
+
+		if (rand() % 2) {
+			w = rand() % 300;
+		}
+		else {
+			w = rand() % 250 + 750;
+		}
+
+		if (rand() % 2) {
+			h = rand() % 150;
+		}
+		else {
+			h = rand() % 200 + 500;
+		}
+
+		ballArray[i]->setPos(w,h);
 	}
 }
 

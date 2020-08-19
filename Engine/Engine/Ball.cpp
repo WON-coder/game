@@ -17,6 +17,13 @@ Ball::Ball() {
 	diffX = 7;
 	diffY = 7;
 
+	if (rand() % 10 + 1 > 4) {
+		diffX *= -1;
+	}
+	if (rand() % 10 + 1 > 4) {
+		diffY *= -1;
+	}
+
 	rect = ball->getRect();
 }
 
@@ -37,9 +44,4 @@ void Ball::Update(float dTime) {
 		diffY *= -1;
 	}
 	setPos(getPosX() + diffX, getPosY() + diffY);
-}
-
-void Ball::setDiffXY() {
-	if (getPosX() < 500) diffX *= -1;
-	if (getPosY() < 350) diffY *= -1;
 }
