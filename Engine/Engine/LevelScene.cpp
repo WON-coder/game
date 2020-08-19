@@ -36,12 +36,12 @@ void LevelScene::Update(float dTime) {
 		}
 
 		if (levelTwoButton->IsPointInRect(inputManager->GetMousePos())) {
-			sceneManager->ChangeScene(new GameScene(7));
+			sceneManager->ChangeScene(new GameScene(6));
 			return;
 		}
 
 		if (levelThreeButton->IsPointInRect(inputManager->GetMousePos())) {
-			sceneManager->ChangeScene(new GameScene(10));
+			sceneManager->ChangeScene(new GameScene(8));
 			return;
 		}
 

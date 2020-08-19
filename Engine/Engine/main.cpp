@@ -2,13 +2,15 @@
 #include "Console.h"
 #include "Application.h"
 #include "MainScene.h"
+
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR, INT cmdShow) {
 	srand(GetTickCount());
 
-	Console console;
+	
 	Application app;
 
 	if (CONSOLE_ON) {
+		Console console;
 		console.OpenConsole();
 	}
 
@@ -17,6 +19,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR, INT cmdS
 
 	app.InitDeltaTime();
 	app.InitManager();
+
 
 	return app.DoMainLoop(new MainScene());
 }

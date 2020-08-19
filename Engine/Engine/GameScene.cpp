@@ -20,7 +20,8 @@ GameScene::GameScene(int num) {
 	for (int i = 0; i < ballNum; i++) {
 		ballArray[i] = new Ball;
 		AddObject(ballArray[i]);
-		ballArray[i]->setPos(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT);
+		ballArray[i]->setPos(rand() % 1000, rand() % 700);
+		ballArray[i]->setDiffXY();
 	}
 }
 
